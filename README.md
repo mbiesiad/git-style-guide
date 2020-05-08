@@ -1,11 +1,11 @@
-# Git Style Guide
+# Przewodnik po stylu Git - Git Style Guide
 
-This is a Git Style Guide inspired by [*How to Get Your Change Into the Linux
+Jest to przewodnik po stylu Git zainspirowany przez [*How to Get Your Change Into the Linux
 Kernel*](https://kernel.org/doc/html/latest/process/submitting-patches.html),
-the [git man pages](http://git-scm.com/doc) and various practices popular
-among the community.
+[git man pages](http://git-scm.com/doc) i różne popularne praktyki
+wśród społeczności.
 
-Translations are available in the following languages:
+Tłumaczenia są dostępne w następujących językach:
 
 * [Chinese (Simplified)](https://github.com/aseaday/git-style-guide)
 * [Chinese (Traditional)](https://github.com/JuanitoFatas/git-style-guide)
@@ -14,6 +14,7 @@ Translations are available in the following languages:
 * [Greek](https://github.com/grigoria/git-style-guide)
 * [Japanese](https://github.com/objectx/git-style-guide)
 * [Korean](https://github.com/ikaruce/git-style-guide)
+* [Polish](https://github.com/mbiesiad/git-style-guide/edit/pl_PL)
 * [Portuguese](https://github.com/guylhermetabosa/git-style-guide)
 * [Russian](https://github.com/alik0211/git-style-guide)
 * [Spanish](https://github.com/jeko2000/git-style-guide)
@@ -21,107 +22,106 @@ Translations are available in the following languages:
 * [Turkish](https://github.com/CnytSntrk/git-style-guide)
 * [Ukrainian](https://github.com/denysdovhan/git-style-guide)
 
-If you feel like contributing, please do so! Fork the project and open a pull
-request.
+Jeśli chcesz wnieść swój wkład, zrób to! Zrób fork projektu i otwórz pull request.
 
-# Table of contents
+# Spis treści
 
-1. [Branches](#branches)
-2. [Commits](#commits)
-  1. [Messages](#messages)
-3. [Merging](#merging)
-4. [Misc.](#misc)
+1. [Gałęzie](#gałęzie)
+2. [Commity](#commity)
+  1. [Wiadomości](#wiadomości)
+3. [Mergowanie(#mergowanie)
+4. [Różnorodne](#różnorodne)
 
-## Branches
+## Gałęzie
 
-* Choose *short* and *descriptive* names:
+* Wybierz *krótkie* i *opisowe* nazwy:
 
   ```shell
-  # good
+  # dobre
   $ git checkout -b oauth-migration
 
-  # bad - too vague
+  # złe - zbyt pobieżne
   $ git checkout -b login_fix
   ```
 
-* Identifiers from corresponding tickets in an external service (eg. a GitHub
-  issue) are also good candidates for use in branch names. For example:
+* Identyfikatory z odpowiednich ticketów w usłudze zewnętrznej (np. GitHub
+  issue) są również dobrymi kandydatami do stosowania w nazwach branchy. Na przykład:
 
   ```shell
   # GitHub issue #15
   $ git checkout -b issue-15
   ```
 
-* Use lowercase in branch names. External ticket identifiers with uppercase
-  letters are a valid exception. Use *hyphens* to separate words.
+* W nazwach branchy używaj małych liter. Zewnętrzne identyfikatory ticketów z wielkimi literami
+  są ważnym wyjątkiem. Użyj *myślników* aby rozdzielać słowa.
 
   ```shell
-  $ git checkout -b new-feature      # good
-  $ git checkout -b T321-new-feature # good (Phabricator task id)
-  $ git checkout -b New_Feature      # bad
+  $ git checkout -b new-feature      # dobre
+  $ git checkout -b T321-new-feature # dobre (Phabricator task id)
+  $ git checkout -b New_Feature      # złe
   ```
 
-* When several people are working on the *same* feature, it might be convenient
-  to have *personal* feature branches and a *team-wide* feature branch.
-  Use the following naming convention:
+* Gdy kilka osób pracuje nad *tym samym* featurem, może być wygodne
+   mieć *osobiste* gałęzie feature'a i podobnie dla *całego zespołu*.
+   Użyj następującej konwencji nazewnictwa:
 
   ```shell
-  $ git checkout -b feature-a/master # team-wide branch
-  $ git checkout -b feature-a/maria  # Maria's personal branch
-  $ git checkout -b feature-a/nick   # Nick's personal branch
+  $ git checkout -b feature-a/master # branch w całym zespole
+  $ git checkout -b feature-a/maria  # gałąź osobista dla Marii
+  $ git checkout -b feature-a/nick   # gałąź osobista dla Nick'a
   ```
 
-  Merge at will the personal branches to the team-wide branch (see ["Merging"](#merging)).
-  Eventually, the team-wide branch will be merged to "master".
+  Zmerguj do woli gałęzie osobiste z gałęzią dla całego zespołu (zobacz ["Mergowanie"](#mergowanie)).
+  W końcu gałąź całego zespołu zostanie zmergowany do "master".
 
-* Delete your branch from the upstream repository after it's merged, unless
-  there is a specific reason not to.
+* Usuń swój branch z repozytorium nadrzędnego po zmergowaniu, chyba że
+  istnieje konkretny powód, aby tego nie robić.
 
-  Tip: Use the following command while being on "master", to list merged
-  branches:
+  Wskazówka: Użyj poniższego polecenia będąc w "master", aby wyświetlić listę zmergowanych
+  gałęzi:
 
   ```shell
   $ git branch --merged | grep -v "\*"
   ```
 
-## Commits
+## Commity
 
-* Each commit should be a single *logical change*. Don't make several
-  *logical changes* in one commit. For example, if a patch fixes a bug and
-  optimizes the performance of a feature, split it into two separate commits.
+* Każdy commit powinien być pojedynczą *zmianą logiczną*. Nie rób kilku
+  *zmian logicznych* w jednym commit'cie. Na przykład, jeśli łatka (patch) naprawia błąd i
+  optymalizuje wydajność feature'a, podziel ją na dwa osobne commity.
 
-  *Tip: Use `git add -p` to interactively stage specific portions of the
-  modified files.*
+  *Wskazówka: Użyj `git add -p` aby interaktywnie stage'ować określone części
+  zmodyfikowanych plików. *
 
-* Don't split a single *logical change* into several commits. For example,
-  the implementation of a feature and the corresponding tests should be in the
-  same commit.
+* Nie dziel pojedynczej *zmiany logicznej* na kilka commitów. Na przykład,
+  implementacja feature'a i odpowiednie testy powinny być w
+  tym samym commit'cie.
 
-* Commit *early* and *often*. Small, self-contained commits are easier to
-  understand and revert when something goes wrong.
+* Commituj *wcześnie* i *często*. Małe, niezależne commity są łatwiejsze
+  do zrozumienia i cofnięcia, gdy coś pójdzie nie tak.
 
-* Commits should be ordered *logically*. For example, if *commit X* depends
-  on changes done in *commit Y*, then *commit Y* should come before *commit X*.
+* Commity powinny być uporządkowane *logicznie*. Na przykład, jeśli *commit X* zależy
+  od zmian zakończonych w *commit Y*, wtedy *commit Y* powinien nastąpić przed *commit X*.
 
-Note: While working alone on a local branch that *has not yet been pushed*, it's
-fine to use commits as temporary snapshots of your work. However, it still
-holds true that you should apply all of the above *before* pushing it.
+Uwaga: Podczas pracy na gałęzi lokalnej, która *nie został jeszcze push'nięta*, jest
+w porzadku użyć commitów jako tymczasowych snapshotów twojej pracy. Jednakże, wciąż
+jest prawdą, że powinieneś zastosować wszystkie powyższe *przed* wypchnięciem.
 
-### Messages
+### Wiadomości
 
-* Use the editor, not the terminal, when writing a commit message:
+* Użyj edytora, nie terminala, podczas pisania wiadomości commita:
 
   ```shell
-  # good
+  # dobre
   $ git commit
 
-  # bad
+  # złe
   $ git commit -m "Quick fix"
   ```
 
-  Committing from the terminal encourages a mindset of having to fit everything
-  in a single line which usually results in non-informative, ambiguous commit
-  messages.
+  Committowanie z terminala zachęca do myślenia o konieczności dopasowania wszystkiego
+  w jednym wierszu, co zwykle skutkuje nieinformowaniem, niejednoznaczną wiadomością, opisem
+  commita.
 
 * The summary line (ie. the first line of the message) should be
   *descriptive* yet *succinct*. Ideally, it should be no longer than
