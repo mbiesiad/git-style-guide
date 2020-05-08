@@ -283,4 +283,4 @@ Agis Anastasopoulos / [@agisanast](https://twitter.com/agisanast) / http://agis.
 
 _________________________________________________
 
-Wersja polska od @[mbiesiad](github.com/mbiesiad)
+Wersja polska od @[mbiesiad](https://github.com/mbiesiad)
