@@ -29,7 +29,7 @@ Jeśli chcesz wnieść swój wkład, zrób to! Zrób fork projektu i otwórz pul
 1. [Gałęzie](#gałęzie)
 2. [Commity](#commity)
   1. [Wiadomości](#wiadomości)
-3. [Mergowanie(#mergowanie)
+3. [Mergowanie](#mergowanie)
 4. [Różnorodne](#różnorodne)
 
 ## Gałęzie
@@ -91,7 +91,7 @@ Jeśli chcesz wnieść swój wkład, zrób to! Zrób fork projektu i otwórz pul
   optymalizuje wydajność feature'a, podziel ją na dwa osobne commity.
 
   *Wskazówka: Użyj `git add -p` aby interaktywnie stage'ować określone części
-  zmodyfikowanych plików. *
+  zmodyfikowanych plików.*
 
 * Nie dziel pojedynczej *zmiany logicznej* na kilka commitów. Na przykład,
   implementacja feature'a i odpowiednie testy powinny być w
@@ -109,7 +109,7 @@ jest prawdą, że powinieneś zastosować wszystkie powyższe *przed* wypchnięc
 
 ### Wiadomości
 
-* Użyj edytora, nie terminala, podczas pisania wiadomości commita:
+* Użyj edytora, nie terminala, podczas pisania wiadomości, opisu commita:
 
   ```shell
   # dobre
@@ -123,78 +123,78 @@ jest prawdą, że powinieneś zastosować wszystkie powyższe *przed* wypchnięc
   w jednym wierszu, co zwykle skutkuje nieinformowaniem, niejednoznaczną wiadomością, opisem
   commita.
 
-* The summary line (ie. the first line of the message) should be
-  *descriptive* yet *succinct*. Ideally, it should be no longer than
-  *50 characters*. It should be capitalized and written in imperative present
-  tense. It should not end with a period since it is effectively the commit
-  *title*:
+* Wiersz streszczenia (tj. pierwszy wiersz wiadomości) powinien być
+   *opisowy* i *zwięzły*. Idealnie byłoby nie dłużej niż
+   *50 znaków*. Powinien być pisany wielkimi literami i pisany w trybie rozkazującym
+   czasu teraźniejszego. Nie powinien kończyć się kropką, ponieważ jest to faktycznie
+   *tytuł* commita:
 
   ```shell
-  # good - imperative present tense, capitalized, fewer than 50 characters
+  # dobre - czas teraźniejszy z trybem rozkazującym, z uwzględnieniem wielkiej litery, mniej niż 50 znaków
   Mark huge records as obsolete when clearing hinting faults
 
-  # bad
+  # złe
   fixed ActiveModel::Errors deprecation messages failing when AR was used outside of Rails.
   ```
 
-* After that should come a blank line followed by a more thorough
-  description. It should be wrapped to *72 characters* and explain *why*
-  the change is needed, *how* it addresses the issue and what *side-effects*
-  it might have.
+* Następnie powinna pojawić się pusta linia, a następnie dokładniejszy
+  opis. Powinien zmieścić się w *72 znaki* i wyjaśnić *dlaczego*
+  zmiana jest potrzebna, *jak* rozwiązuje problem i jakie *skutki uboczne*
+  może mieć.
 
-  It should also provide any pointers to related resources (eg. link to the
-  corresponding issue in a bug tracker):
+  Powinno również zapewnić wszelkie wskazówki dotyczące powiązanych zasobów (np. link do
+  odpowiedniego issue w bug trackerze):
 
   ```text
-  Short (50 chars or fewer) summary of changes
+  Krótkie (50 znaków lub mniej) podsumowanie zmian
 
-  More detailed explanatory text, if necessary. Wrap it to
-  72 characters. In some contexts, the first
-  line is treated as the subject of an email and the rest of
-  the text as the body.  The blank line separating the
-  summary from the body is critical (unless you omit the body
-  entirely); tools like rebase can get confused if you run
-  the two together.
+  Bardziej szczegółowy tekst objaśniający, jeśli to konieczne. Zmieść w
+  72 znakach. W niektórych kontekstach pierwsza
+  linia jest traktowana, jako temat wiadomości e-mail i reszta
+  tekstu, jako ciało. Pusty wiersz oddzielający
+  podsumowanie z ciała jest krytyczny (chyba że pominiesz ciało
+  całkowicie); narzędzia takie jak rebase mogą się pomylić, jeśli uruchomisz
+  dwa razem.
 
-  Further paragraphs come after blank lines.
+  Kolejne akapity pojawiają się po pustych wierszach.
 
-  - Bullet points are okay, too
+  - Punkty wypunktowania są też w porządku
 
-  - Use a hyphen or an asterisk for the bullet,
-    followed by a single space, with blank lines in
-    between
+  - Użyj wypunktowania z myślnikiem lub gwiazdką,
+    po którym następuje pojedyncza spacja, z pustymi wierszami pomiędzy 
+    
 
-  The pointers to your related resources can serve as a footer
-  for your commit message. Here is an example that is referencing
-  issues in a bug tracker:
+  Wskaźniki do powiązanych zasobów mogą służyć jako stopka
+  dla twojego opisu commita. Oto przykład, który się odwołuje do
+  issues w bug trackerze:
 
-  Resolves: #56, #78
-  See also: #12, #34
+  Rozwiązuje: #56, #78
+  Zobacz też: #12, #34
 
-  Source http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+  Źródło http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
   ```
 
-  Ultimately, when writing a commit message, think about what you would need
-  to know if you run across the commit in a year from now.
+  Ostatecznie, pisząc komunikat commita, zastanów się, czego będziesz potrzebował
+  wiedzieć, gdy natkniesz się na tego commita za rok.
 
-* If a *commit A* depends on *commit B*, the dependency should be
-  stated in the message of *commit A*. Use the SHA1 when referring to
-  commits.
+* Jeśli *commit A* zależy od *commit B*, zależność powinna być
+  określona w wiadomości *commit A*. Użyj SHA1 odnosząc się do
+  commitów.
 
-  Similarly, if *commit A* solves a bug introduced by *commit B*, it should
-  also be stated in the message of *commit A*.
+  Podobnie, jeśli *commit A* rozwiązuje błąd wprowadzony przez *commit B*, powinno
+  to być również określone w wiadomości z *commit A*.
 
-* If a commit is going to be squashed to another commit use the `--squash` and
-  `--fixup` flags respectively, in order to make the intention clear:
+* Jeśli commit ma być squash'owany do innego commita, użyj flag `--squash` i
+  `--fixup` odpowiednio, aby wyjaśnić zamiar:
 
   ```shell
   $ git commit --squash f387cab2
   ```
 
-  *(Tip: Use the `--autosquash` flag when rebasing. The marked commits will be
-  squashed automatically.)*
+  *(Wskazówka: Użyj flagi `--autosquash` podczas rebasing. Oznaczone commity będą
+  'squashed' automatycznie.)*
 
-## Merging
+## Mergowanie
 
 * **Do not rewrite published history.** The repository's history is valuable in
   its own right and it is very important to be able to tell *what actually
