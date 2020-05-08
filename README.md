@@ -196,88 +196,91 @@ jest prawdą, że powinieneś zastosować wszystkie powyższe *przed* wypchnięc
 
 ## Mergowanie
 
-* **Do not rewrite published history.** The repository's history is valuable in
-  its own right and it is very important to be able to tell *what actually
-  happened*. Altering published history is a common source of problems for
-  anyone working on the project.
+* **Nie przepisuj opublikowanej historii.** Historia repozytorium jest cenna w
+   swój sposób i bardzo ważne jest, aby móc *powiedzieć, co właściwie
+   się stało*. Zmiana opublikowanej historii jest częstym źródłem problemów
+   dla każdego, kto pracuje nad projektem.
 
-* However, there are cases where rewriting history is legitimate. These are
-  when:
+* Są jednak przypadki, w których przepisywanie historii jest uzasadnione. To są
+  przypadki kiedy:
 
-  * You are the only one working on the branch and it is not being reviewed.
+  * Tylko ty pracujesz na branchu i nie jest on sprawdzany.
 
-  * You want to tidy up your branch (eg. squash commits) and/or rebase it onto
-    the "master" in order to merge it later.
+  * Chcesz uporządkować swój branch (np. squash commits) i/lub rebase na
+    "master" w celu późniejszego scalenia.
 
-  That said, *never rewrite the history of the "master" branch* or any other
-  special branches (ie. used by production or CI servers).
+  To powiedziawszy, *nigdy nie przepisuj historii gałęzi "master"*, ani żadnych innych
+   specjalnych gałęzi (tzn. używanych przez serwery produkcyjne lub CI).
 
-* Keep the history *clean* and *simple*. *Just before you merge* your branch:
+* Trzymaj historię *czystą* i *prostą*. *Tuż przed scaleniem* twojej gałęzi:
 
-    1. Make sure it conforms to the style guide and perform any needed actions
-       if it doesn't (squash/reorder commits, reword messages etc.)
+    1. Upewnij się, że jest ona zgodna z przewodnikiem po stylach i wykonaj wszelkie niezbędne działania,
+       jeśli nie jest (squash/reorder commits, przeredagowanie wiadomości itp.)
 
-    2. Rebase it onto the branch it's going to be merged to:
+    2. Rebase na branch, który będzie mergowany:
 
        ```shell
        [my-branch] $ git fetch
        [my-branch] $ git rebase origin/master
-       # then merge
+       # wtedy merge
        ```
 
-       This results in a branch that can be applied directly to the end of the
-       "master" branch and results in a very simple history.
+       W rezultacie powstaje gałąź, którą można zastosować bezpośrednio na końcu
+       "master" brancha i skutkuje bardzo prostą historią.
 
-       *(Note: This strategy is better suited for projects with short-running
-       branches. Otherwise it might be better to occassionally merge the
-       "master" branch instead of rebasing onto it.)*
+       *(Uwaga: Ta strategia lepiej nadaje się do projektów o krótkim okresie funkcjonowania
+        gałęzi. W przeciwnym razie lepiej od czasu do czasu scalić
+        gałąź "master" zamiast opierać się na niej.)*
 
-* If your branch includes more than one commit, do not merge with a
-  fast-forward:
+* Jeśli twój branch zawiera więcej niż jeden commit, nie merguj z
+  przewijaniem do przodu:
 
   ```shell
-  # good - ensures that a merge commit is created
+  # dobre - zapewnia utworzenie zatwierdzenia scalania
   $ git merge --no-ff my-branch
 
-  # bad
+  # złe
   $ git merge my-branch
   ```
 
-## Misc.
+## Różnorodne
 
-* There are various workflows and each one has its strengths and weaknesses.
-  Whether a workflow fits your case, depends on the team, the project and your
-  development procedures.
+* Istnieją różne przepływy pracy i każdy ma swoje mocne i słabe strony.
+  To, czy przepływ pracy pasuje do twojego przupadku, zależy od zespołu, projektu i twoich
+  procedur developmentu.
 
-  That said, it is important to actually *choose* a workflow and stick with it.
+  To powiedziawszy, ważne jest *wybranie* przepływu pracy i trzymanie się go.
 
-* *Be consistent.* This is related to the workflow but also expands to things
-  like commit messages, branch names and tags. Having a consistent style
-  throughout the repository makes it easy to understand what is going on by
-  looking at the log, a commit message etc.
+* *Zachowaj spójność.* Jest to związane z przepływem pracy, ale obejmuje także różne rzeczy
+   takie jak komunikaty commitów, nazwy gałęzi i tagi. Mając spójny styl
+   w całym repozytorium ułatwia to zrozumienie, co się dzieje
+   przeglądając dziennik, wiadomość commita itp.
 
-* *Test before you push.* Do not push half-done work.
+* *Przetestuj przed wypchnięciem.* Nie wypychaj nieskończonej pracy.
 
-* Use [annotated tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging#_annotated_tags)
-  for marking releases or other important points in the history. Prefer
+* Użyj [tagi z adnotacjami](https://git-scm.com/book/en/v2/Git-Basics-Tagging#_annotated_tags)
+  do oznaczania wydań lub innych ważnych punktów w historii. Preferuj
   [lightweight tags](https://git-scm.com/book/en/v2/Git-Basics-Tagging#_lightweight_tags)
-  for personal use, such as to bookmark commits for future reference.
+  do użytku osobistego, na przykład do zakładki commitów na przyszłość.
 
-* Keep your repositories at a good shape by performing maintenance tasks
-  occasionally:
+* Utrzymuj swoje repozytoria w dobrym stanie, wykonując sporadycznie zadania konserwacyjne:
 
   * [`git-gc(1)`](http://git-scm.com/docs/git-gc)
   * [`git-prune(1)`](http://git-scm.com/docs/git-prune)
   * [`git-fsck(1)`](http://git-scm.com/docs/git-fsck)
 
-# License
+# Licencja
 
 ![cc license](http://i.creativecommons.org/l/by/4.0/88x31.png)
 
-This work is licensed under a [Creative Commons Attribution 4.0
+Ta praca jest na licencji [Creative Commons Attribution 4.0
 International license](https://creativecommons.org/licenses/by/4.0/).
 
-# Credits
+# Stworzone przez
 
 Agis Anastasopoulos / [@agisanast](https://twitter.com/agisanast) / http://agis.io
-... and [contributors](https://github.com/agis-/git-style-guide/graphs/contributors)!
+... i [współtwórców](https://github.com/agis-/git-style-guide/graphs/contributors)!
+
+_________________________________________________
+
+Wersja polska od @[mbiesiad](github.com/mbiesiad)
